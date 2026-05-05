@@ -1,0 +1,82 @@
+# ---------------------------
+# Vault connection
+# ---------------------------
+
+vault_addr = "http://192.168.x.x:8200"
+
+vault_approle_role_id   = "CHANGE_ME_ROLE_ID"
+vault_approle_secret_id = "CHANGE_ME_SECRET_ID"
+
+vault_proxmox_secret_mount = "secret"
+vault_proxmox_secret_name  = "proxmox"
+
+# ---------------------------
+# Proxmox provider settings
+# ---------------------------
+
+proxmox_tls_insecure = true
+
+# ---------------------------
+# Proxmox LXC identity
+# ---------------------------
+
+target_node = "pve01"
+hostname    = "advanced-lxc-01"
+vmid        = null
+
+description = "Advanced Terraform-managed LXC."
+
+# ---------------------------
+# Proxmox LXC source
+# ---------------------------
+
+ostemplate = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+
+password = null
+
+ssh_public_keys = "ssh-ed25519 CHANGE_ME_PUBLIC_KEY"
+
+# ---------------------------
+# Compute resources
+# ---------------------------
+
+cores        = 2
+memory       = 2048
+swap         = 512
+unprivileged = true
+
+start  = true
+onboot = true
+
+# ---------------------------
+# Root filesystem
+# ---------------------------
+
+rootfs_storage = "local-lvm"
+rootfs_size    = "16G"
+
+# ---------------------------
+# Network
+# ---------------------------
+
+network_name     = "eth0"
+network_bridge   = "vmbr0"
+network_ip       = "192.168.10.50/24"
+network_gateway  = "192.168.10.1"
+
+nameserver   = "192.168.10.1"
+searchdomain = "example.local"
+
+# ---------------------------
+# LXC features
+# ---------------------------
+
+enable_nesting = false
+enable_fuse    = false
+enable_keyctl  = false
+
+# ---------------------------
+# Tags
+# ---------------------------
+
+tags = "terraform;proxmox;lxc"
